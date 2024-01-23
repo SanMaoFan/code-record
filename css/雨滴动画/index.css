@@ -1,0 +1,36 @@
+/* 场景 */
+.scene {
+    position: relative;
+    width: 600px;
+    height: 500px;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #1d1d26, #000);
+}
+
+/* 为场景增加一些文字 */
+.scene:after {
+    content: 'CSS JAVASCRIPT RAIN ANIMATION';
+    font: 800 64px/1 sans-serif;
+    color: #2e2e2e;
+    text-shadow: 
+    1px 1px 4px #000,
+    2px 2px 8px #000,
+    3px 3px 16px #000;
+    width: min-content;
+}
+
+/* 雨滴 */
+.raindrop {
+    position: absolute;
+    width: 1px;
+    opacity: 1;
+    background-color: #647c8b;
+}
+
+/* 雨滴 css 关键帧动画 */
+@keyframes drop {
+    to {
+        transform: translateY(600px);
+        opacity: 0;
+    }
+}

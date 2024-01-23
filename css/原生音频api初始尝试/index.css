@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+canvas {
+    margin-top: 100px;
+    display: block;
+    height: 600px;
+    width: 100vw;
+}

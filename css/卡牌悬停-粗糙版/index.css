@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: black;
+}
+
+.card {
+    position: absolute;
+    color: white;
+    height: 200px;
+    width: 160px;
+    background-color: green;
+    font-size: 60px;
+    text-align: center;
+    border: 4px solid yellow; 
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.card:hover {
+    background: red;
+    translate: 0 -20px;
+    z-index: 999 !important;
+}

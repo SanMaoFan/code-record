@@ -1,0 +1,27 @@
+div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: skyblue;
+    /* 动画执行完后再进行反向执行，就会好像碰到边界后反弹的效果，使用水平、垂直不同方向、不同执行时间，这样看着会自然些 */
+    animation: 
+        hor 3s infinite linear alternate,
+        ver 2.3s infinite linear alternate;
+}
+
+/* 水平方向动画 */
+@keyframes hor {
+    to {
+        left: calc(100vw - 150px);
+    }
+}
+
+/* 垂直方向动画 */
+@keyframes ver {
+    to {
+        top: calc(100vh - 150px);
+    }
+}

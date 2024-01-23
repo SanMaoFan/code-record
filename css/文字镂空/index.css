@@ -1,0 +1,37 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    --bg: url('../../static/img/winter.jpg') no-repeat center/cover;
+    height: 100vh;
+    width: 100vw;
+    background: var(--bg);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.modal h1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10vw;
+    /* 文字描边 */
+    text-stroke: 1px #fff;
+    -webkit-text-stroke: 1px #fff;
+    background: var(--bg);
+    /* 设置范围到文字范围 */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}

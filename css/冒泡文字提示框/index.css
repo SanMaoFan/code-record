@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    min-height: 100vh;
+}
+
+.inner {
+    background-color: #09c999;
+    color: #fff;
+    padding: 1em;
+    width: 250px;
+    border-radius: 10px;
+    /* 裁剪成半径 10%，原点在 90% 20% 的圆 */
+    clip-path: circle(10% at 90% 20%);
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+
+.inner:hover {
+    /* hover 时裁剪为中心原点半径 75% 的圆（恢复原来的状态） */
+    clip-path: circle(75%);
+    background-color: #00b6ff;
+}
+
+.inner span {
+    float: right;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 12px;
+    margin-right: 2.5%;
+    transition: color .5s;
+}
+
+.inner:hover span {
+    color: transparent;
+}
+
+.inner p {
+    font-size: 0.8em;
+}

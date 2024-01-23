@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+}
+
+h2 {
+    position: relative;
+    font-size: 15vw;
+    color: white;
+    
+}
+
+h2::before {
+    content: 'WATER';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 15vw;
+    color: #555;
+    z-index: -1;
+    transform: rotateX(56deg) skewX(46deg);
+    transform-origin: 0 16vw;
+    filter: blur(5px);
+    /* 渐变 */
+    -webkit-mask-image: linear-gradient(transparent, #000);
+}

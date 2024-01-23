@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+}
+
+:root {
+    --offset-x: 0;
+    --offset-y: 0;
+}
+
+.circle {
+    position: absolute;
+    top: calc(100px + var(--offset-y));
+    left: calc(100px + var(--offset-x));
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    background-image: url(../../static/img/winter.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -300px;
+}

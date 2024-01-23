@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    min-height: 100vh;
+}
+
+.box {
+    position: relative;
+    height: 320px;
+    width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    border-radius: 50%;
+}
+
+.box .logo {
+    height: 220px;
+    width: 220px;
+    background-image: url(../../static/img/winter.jpg);
+    background-position: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+.box .text {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    animation: animate 8s linear infinite;
+}
+
+.box .text .item {
+    position: absolute;
+    transform-origin: 0 146px;
+    left: 50%;
+    /* top 值由 box 容器宽度的一半 减去 当前 transform-orign 的垂直偏移量的值可得知 */
+    top: 14px;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+} 
