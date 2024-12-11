@@ -79,3 +79,4 @@
 
 - [ProFormDateRangePicker 在 DrawerForm 中显示不全](/bug/ProFormDateRangePicker在DrawerForm中显示不全)
 - [用 ProFormSelect 配和 request 属性以及 showSearch 属性使用时可能出现多次搜索](/bug/用ProFormSelect配和request属性以及showSearch属性使用时可能出现多次搜索)
+- [用 @ant-design/pro-components 依赖中的 ProTable 组件开发时，如果列过多，并要使用勾选框时，其勾选过程中会卡顿并过慢](/bug/ProTable设置多列并使用勾选框时,勾选会卡顿)
