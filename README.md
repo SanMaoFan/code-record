@@ -7,6 +7,7 @@
 - learning: 学习、复习、扩展知识；学而不思则罔，思而不学则殆；
 - simple: 简易代码；用少量代码完成所需功能；
 - bug: 遇到的问题；记录遇到的问题，方便后续查阅；
+- algorithm: 算法；算法相关；
 
 ## 导航
 
@@ -81,3 +82,7 @@
 - [ProFormDateRangePicker 在 DrawerForm 中显示不全](/bug/ProFormDateRangePicker在DrawerForm中显示不全)
 - [用 ProFormSelect 配和 request 属性以及 showSearch 属性使用时可能出现多次搜索](/bug/用ProFormSelect配和request属性以及showSearch属性使用时可能出现多次搜索)
 - [用 @ant-design/pro-components 依赖中的 ProTable 组件开发时，如果列过多，并要使用勾选框时，其勾选过程中会卡顿并过慢](/bug/ProTable设置多列并使用勾选框时,勾选会卡顿)
+
+### algorithm
+
+- [快速排序 quickSort](/algorithm/快速排序quickSort)
