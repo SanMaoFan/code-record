@@ -14,3 +14,5 @@
   // 下载文件形式，并指定下载的文件名
   Content-Disposition: attachment; filename="test.jpg"
 ```
+
+可参考 nginx 根据实际情况配置响应头：[nginx,文件下载,预览,防止浏览器下载时直接打开,防止预览时直接下载文件,解决 nginx 谷歌浏览器不支持下载问题](https://www.cnblogs.com/owenzhou/p/5325570.html)
