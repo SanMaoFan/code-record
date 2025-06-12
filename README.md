@@ -36,6 +36,7 @@
 ### learning
 
 - [闭包](/learning/闭包/)
+- [入门 MCP](/learning/入门MCP/)
 
 ### plugins
 
