@@ -89,3 +89,4 @@
 ### algorithm
 
 - [快速排序 quickSort](/algorithm/快速排序quickSort)
+- [二分查找法](/algorithm/二分查找法)
