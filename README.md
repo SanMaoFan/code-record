@@ -91,3 +91,7 @@
 
 - [快速排序 quickSort](/algorithm/快速排序quickSort)
 - [二分查找法](/algorithm/二分查找法)
+
+### daily
+
+- [在 chrome 控制台输入 console.log 无任何输出](/daily/在chrome控制台输入console.log无任何输出/)
