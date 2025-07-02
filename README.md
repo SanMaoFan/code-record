@@ -68,6 +68,7 @@
 - [使用 Promise 模拟浏览器控制并发请求](/skill/使用Promise模拟浏览器控制并发请求)
 - [如何让文件连接在浏览器中打开时不是预览，而是直接下载](/skill/直接下载文件)
 - [使用 ant-design 时，将所有 icon 展示在下拉框中](/skill/使用ant-design时，将所有icon展示在下拉框中)
+- [使用 js 调用摄像头拍照](/skill/使用js调用摄像头拍照)
 
 ### simple
 
