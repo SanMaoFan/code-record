@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>手部识别和追踪特效</title>
+      <style>
+            * {
+                  margin: 0;
+                  padding: 0;
+            }
+
+            .container {
+                  position: relative;
+            }
+
+            #video {
+                  height: 500px !important;
+                  width: 500px !important;
+            }
+
+            #pointer {
+                  height: 60px;
+                  width: 60px;
+                  border-radius: 50%;
+                  background: red;
+                  position: absolute;
+                  left: var(--x);
+                  top: var(--y);
+
+
+            }
+      </style>
+</head>
+
+<body>
+      <div class="container">
+            <video id="video">
+            </video>
+            <div id="pointer" style="--x:20px;--y:20px"></div>
+      </div>
+      <canvas id="canvas"></canvas>
+      <script src="./handtrack.min.js"></script>
+      <script src="./index.js"></script>
+</body>
+
+</html>
