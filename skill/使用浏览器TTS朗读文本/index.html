@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description"
+            content="Build an interactive sentence-level text-to-speech reader with highlight, playback controls, and local progress tracking using HTML and JavaScript." />
+      <title>TTS朗读文本</title>
+      <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+      <div class="toolbar">
+            <button id="start">Play</button>
+            <button id="pause" disabled>Pause</button>
+            <button id="resume" disabled>Resume</button>
+            <button id="stop" disabled>Stop</button>
+            <button id="reset">Reset</button>
+            <select id="voices"></select>
+      </div>
+      <div class="text-block" id="reader">
+            <span class="line">下面是一个较复杂的例子，其中演示了如何利用PureComponent来进一步优化性能和减少 bug 产生的可能（以下这段文字需要你深刻理解
+                  shouldComponentUpdate, memo 的机制，以及 Component 和
+                  PureComponent 的不同，如果不了解就先跳过吧）。</span>
+            <span class="line">对于MyListItem组件来说，其onPressItem属性使用箭头函数而非 bind 的方式进行绑定，使其不会在每次列表重新 render 时生成一个新的函数。</span>
+            <span class="line">如果不指定此属性，则FlatList不会触发更新，因为它是一个PureComponent，其 props 在===比较中没有变化则不会触发更新。</span>
+            <span class="line">当某行滑出渲染区域之外后，其内部状态将不会保留。请确保你在行组件以外的地方保留了数据。</span>
+            <span class="line">默认情况下每行都需要提供一个不重复的 key 属性。你也可以提供一个keyExtractor函数来生成 key。</span>
+      </div>
+      <script src="./index.js"></script>
+</body>
+
+</html>

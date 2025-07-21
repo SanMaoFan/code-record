@@ -71,6 +71,7 @@
 - [使用 ant-design 时，将所有 icon 展示在下拉框中](/skill/使用ant-design时，将所有icon展示在下拉框中)
 - [使用 js 调用摄像头拍照](/skill/使用js调用摄像头拍照)
 - [手部识别和追踪效果](/skill/手部识别和追踪特效)
+- [使用浏览器 TTS 朗读文本](/skill/使用浏览器TTS朗读文本)
 
 ### simple
 
