@@ -73,6 +73,7 @@
 - [手部识别和追踪效果](/skill/手部识别和追踪特效)
 - [使用浏览器 TTS 朗读文本](/skill/使用浏览器TTS朗读文本)
 - [使用 nodejs 批量下载 gitee 仓库](/skill/使用nodejs批量下载gitee仓库)
+- [基于 Calibre 的电子书转换功能](/skill/基于Calibre的电子书转换功能)
 
 ### simple
 
