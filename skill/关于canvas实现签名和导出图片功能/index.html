@@ -54,6 +54,11 @@
             <button class="download">下载</button>
       </div>
       <script type="text/javascript">
+            /** 
+             * 当前遇到的问题
+             * - 如果在回放过程中点击了撤销，那么canvas 会立马显示完整内容，然后再次点击回放时，其播放顺序会错乱
+            */
+
 
             // canvas 对象
             let canvas = null
@@ -215,7 +220,7 @@
                                           ctx.closePath()
                                     }
                                     if (isPlay) {
-                                          await drawLine(drawCurLine)
+                                          await asyncDrawLine(drawCurLine)
                                     } else {
                                           drawCurLine()
                                     }
@@ -226,7 +231,7 @@
             }
 
             // 异步绘画
-            function drawLine (callback) {
+            function asyncDrawLine (callback) {
                   return new Promise(resolve => {
                         setTimeout(() => {
                               callback()
