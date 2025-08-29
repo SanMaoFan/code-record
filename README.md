@@ -75,6 +75,7 @@
 - [使用 nodejs 批量下载 gitee 仓库](/skill/使用nodejs批量下载gitee仓库)
 - [基于 Calibre 的电子书转换功能](/skill/基于Calibre的电子书转换功能)
 - [react-native 获取状态栏高度](/skill/react-native获取状态栏高度)
+- [关于 canvas 实现签名和导出图片功能]('/skill/关于canvas实现签名和导出图片功能')
 
 ### simple
 

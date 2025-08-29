@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>关于canvas实现签名和导出图片功能</title>
+      <style type="text/css">
+            * {
+                  margin: 0;
+                  padding: 0;
+            }
+
+            .container {
+                  /* display: flex;
+                  justify-content: center; */
+                  text-align: center;
+                  padding: 20px;
+            }
+
+            .btn-group {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center
+            }
+
+            .canvas {
+                  background: gray;
+                  /* z-index: 1; */
+            }
+
+            button {
+                  margin: 0 10px;
+                  background-color: aqua;
+                  color: white;
+                  font-size: 24px;
+                  border: 1px solid aqua;
+                  padding: 10px 20px;
+                  border-radius: 10px;
+                  outline: none;
+                  cursor: pointer;
+            }
+      </style>
+</head>
+
+<body>
+      <div class="container">
+            <canvas class="canvas" width="500" height="500"></canvas>
+      </div>
+      <div class="btn-group">
+            <button class="prev">撤销</button>
+            <button class="clear">清除</button>
+            <button class="download">下载</button>
+      </div>
+      <script type="text/javascript">
+
+            // canvas 对象
+            let canvas = null
+            // canvas 上下文
+            let ctx = null
+
+            // 一个笔画记录的所有点
+            const pointList = []
+            // 记录组成图画的所有笔画数组
+            const allPointList = []
+
+            function init () {
+                  // 鼠标点击的状态
+                  let isDown = false
+
+                  // 获取 canvas 元素
+                  canvas = document.querySelector('.canvas')
+
+                  // 获取 canvas 上下文
+                  ctx = canvas.getContext('2d')
+
+                  // 定义线条的宽度
+                  ctx.lineWidth = 4
+                  // 定义画笔的颜色
+                  ctx.strokeStyle = 'black'
+                  // 线条末端为圆形
+                  ctx.lineCap = 'round';
+                  // 线条交汇处为圆形
+                  ctx.lineJoin = 'round';
+
+
+                  // 监听鼠标按下的事件
+                  canvas.addEventListener('mousedown', (e) => {
+                        // 获取 canvas 元素的位置信息
+                        const rect = canvas.getBoundingClientRect();
+                        // 计算鼠标在 canvas 内的相对坐标
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+
+                        isDown = true;
+
+                        // 把当前点添加到数组中
+                        pointList.push({
+                              x,
+                              y
+                        })
+
+                        ctx.beginPath();
+                  }, false)
+
+                  // 监听鼠标移动
+                  canvas.addEventListener('mousemove', (e) => {
+                        // 如果鼠标不是按下状态，则直接退出
+                        if (!isDown) return
+
+                        // 获取 canvas 元素的位置信息
+                        const rect = canvas.getBoundingClientRect();
+                        // 计算鼠标在 canvas 内的相对坐标
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+
+                        // 取用最后一个点作为绘制起点
+                        const { x: lastX, y: lastY } = pointList.at(-1)
+
+                        // 调用定义的 draw 绘制方法
+                        draw(lastX, lastY, x, y)
+
+                        // 把当前点添加到数组中
+                        pointList.push({
+                              x,
+                              y
+                        })
+                  }, false)
+
+                  // 监听松开鼠标事件
+                  canvas.addEventListener('mouseup', () => {
+                        isDown = false
+                        // 关闭路径
+                        ctx.closePath()
+
+                        // 记录当前笔画的数据
+                        allPointList.push([...pointList])
+
+                        // 清除当前记录笔画的数据数组
+                        pointList.splice(0)
+                  })
+
+                  // 监听鼠标移出画布
+                  canvas.addEventListener('mouseleave', () => {
+                        // 移出了画布则认为是松开的鼠标，再次移入画布则需要按下失败才会绘制，这里为了避免移出后再抬起鼠标
+                        isDown = false
+                        // 关闭路径
+                        ctx.closePath()
+
+                        // 先判断当前笔画数据是否为空，不为空再进行存储
+                        if (pointList.length) {
+                              allPointList.push([...pointList])
+                        }
+
+                        /// 清除当前记录笔画的数据数组
+                        pointList.splice(0)
+                  })
+
+                  // 撤销按钮
+                  const prevBtn = document.querySelector('.prev')
+                  prevBtn.addEventListener('click', () => {
+                        prevAction()
+                  })
+                  // 清除按钮
+                  const clearBtn = document.querySelector('.clear')
+                  clearBtn.addEventListener('click', () => {
+                        clearCanvas()
+                  })
+                  // 下载按钮
+                  const downBtn = document.querySelector('.download')
+                  downBtn.addEventListener('click', () => {
+                        downloadImg()
+                  })
+
+
+
+
+
+
+            }
+
+            // 绘制
+            function draw (startX, startY, endX, endY) {
+                  // 设置起点
+                  ctx.moveTo(startX, startY)
+                  // 设置终点
+                  ctx.lineTo(endX, endY)
+                  // 调用上下文的绘制方法
+                  ctx.stroke()
+            }
+
+            // 返回上一步
+            function prevAction () {
+                  // 先清除画布
+                  clearCanvas()
+                  // 将最后一个笔画删除
+                  allPointList.pop()
+                  // 还原现有笔画数据
+                  allPointList.forEach(item => {
+                        item.forEach((point, index) => {
+                              // 下一个坐标点
+                              const nextPoint = item[index + 1]
+                              // 如果下一个坐标点存在再进行绘制
+                              if (nextPoint) {
+                                    ctx.beginPath()
+                                    draw(point.x, point.y, nextPoint.x, nextPoint.y)
+                                    ctx.closePath()
+                              }
+                        })
+                  })
+            }
+
+            // 清除画布
+            function clearCanvas () {
+                  ctx.clearRect(0, 0, canvas.width, canvas.height)
+            }
+
+            // 下载
+            function downloadImg () {
+                  // 使用 canvas 的 toDateURL 方法，将画布内容转换为 base64 编码的图片
+                  const imgData = canvas.toDataURL('image/png')
+                  // 创建下载链接
+                  const link = document.createElement('a')
+                  link.download = '签名.png'
+                  link.href = imgData
+                  // 触发点击
+                  link.click()
+
+            }
+
+
+
+
+            // 等待 dom 加载完成
+            document.addEventListener('DOMContentLoaded', function () {
+                  init()
+            })
+      </script>
+</body>
+
+</html>
