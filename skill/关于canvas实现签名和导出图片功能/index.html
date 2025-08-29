@@ -26,7 +26,7 @@
 
             .canvas {
                   background: gray;
-                  /* z-index: 1; */
+                  border-radius: 6px;
             }
 
             button {
@@ -57,6 +57,7 @@
             /** 
              * 当前遇到的问题
              * - 如果在回放过程中点击了撤销，那么canvas 会立马显示完整内容，然后再次点击回放时，其播放顺序会错乱
+             * - 回放过程中如果点击下载，会下载过程中的绘画图片，而不是完整的内容图片
             */
 
 
@@ -171,6 +172,8 @@
                   const clearBtn = document.querySelector('.clear')
                   clearBtn.addEventListener('click', () => {
                         clearCanvas()
+                        pointList.splice(0)
+                        allPointList.splice(0)
                   })
                   // 回放按钮
                   const playBtn = document.querySelector('.play')
