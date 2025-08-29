@@ -50,6 +50,7 @@
       <div class="btn-group">
             <button class="prev">撤销</button>
             <button class="clear">清除</button>
+            <button class="play">回放</button>
             <button class="download">下载</button>
       </div>
       <script type="text/javascript">
@@ -166,16 +167,16 @@
                   clearBtn.addEventListener('click', () => {
                         clearCanvas()
                   })
+                  // 回放按钮
+                  const playBtn = document.querySelector('.play')
+                  playBtn.addEventListener('click', () => {
+                        prevAction('play')
+                  })
                   // 下载按钮
                   const downBtn = document.querySelector('.download')
                   downBtn.addEventListener('click', () => {
                         downloadImg()
                   })
-
-
-
-
-
 
             }
 
@@ -190,24 +191,49 @@
             }
 
             // 返回上一步
-            function prevAction () {
+            async function prevAction (type) {
+                  // 是否为重放
+                  const isPlay = 'play' === type
                   // 先清除画布
                   clearCanvas()
-                  // 将最后一个笔画删除
-                  allPointList.pop()
+                  if (!isPlay) {
+                        // 将最后一个笔画删除
+                        allPointList.pop()
+                  }
                   // 还原现有笔画数据
-                  allPointList.forEach(item => {
-                        item.forEach((point, index) => {
+                  for (let j = 0; j < allPointList.length; j++) {
+                        const item = allPointList[j]
+                        for (let i = 0; i < item.length; i++) {
                               // 下一个坐标点
-                              const nextPoint = item[index + 1]
+                              const nextPoint = item[i + 1]
                               // 如果下一个坐标点存在再进行绘制
                               if (nextPoint) {
-                                    ctx.beginPath()
-                                    draw(point.x, point.y, nextPoint.x, nextPoint.y)
-                                    ctx.closePath()
+                                    // 定义当前要绘制的笔画
+                                    const drawCurLine = () => {
+                                          ctx.beginPath()
+                                          draw(item[i].x, item[i].y, nextPoint.x, nextPoint.y)
+                                          ctx.closePath()
+                                    }
+                                    if (isPlay) {
+                                          await drawLine(drawCurLine)
+                                    } else {
+                                          drawCurLine()
+                                    }
                               }
-                        })
+                        }
+                  }
+
+            }
+
+            // 异步绘画
+            function drawLine (callback) {
+                  return new Promise(resolve => {
+                        setTimeout(() => {
+                              callback()
+                              resolve()
+                        }, 10)
                   })
+
             }
 
             // 清除画布
